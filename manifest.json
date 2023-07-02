@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "NewTabula",
+  "version": "0.1",
+  "description": "The best new tab extension ever.",
+  "author": "MyKale Salad",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "https://api.hackernoon.com/"
+  ]
+}
