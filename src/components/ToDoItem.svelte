@@ -1,38 +1,40 @@
 <div class="item_frame">    
-    <input class="item_checkbox" type="checkbox">
-    <p class="item_name">{name}</p>
+    <Checkbox index={props.id}/>
+    <span class={className}>{props.name}</span>
 </div>
 
 <script lang="ts">
-    export let name;
+    import type { ToDoType } from "../state/localStorage";
+    import { ToDoStore } from "../state/stores";
+    export let props: ToDoType;
+    import Checkbox from "./Checkbox.svelte";
+    
+    $: className = "name" + ($ToDoStore[props.id].checked ? " strikethrough" : "");
 </script>
 
 <style>
+
     .item_frame {
-        display: block;
+        display: flex;
+        align-items: center;
         border: 2px solid white;
         margin: 1rem;
         padding: 1rem;
-        border-radius: 30px;
-        transition: 0.1s ease;
+        border-radius: 10px;
+        transition: 0.3s ease;
     }
 
     .item_frame:hover {
-        border-radius: 0%;
-        transition: 0.1s ease;
+        border-radius: 0px;
+        transition: 0.3s ease;
     }
 
-    .item_checkbox {
-        display: inline;
-        margin-right: 1rem;
-        opacity: 0;
-        border: 1px solid white;
-        width: 1rem;
-        height: 1rem;
-        
+    .name {
+        margin-left: 0.5rem;
     }
 
-    .item_name {
-        display: inline;
+    .strikethrough {
+        text-decoration: line-through;
     }
+
 </style>
