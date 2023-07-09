@@ -1,5 +1,5 @@
 <div id="wrapper">
-    <input type="text" id="inputbox" bind:value={itemValue}>
+    <input type="text" id="inputbox" bind:value={itemValue} on:keydown={(e) => handleKeyDown}>
     <button id="submitbutton" on:click={addItem}>Add</button>
 </div>
 
@@ -11,7 +11,20 @@
     import { ToDoStore } from "../state/stores";
 
     function addItem() {
-        ToDoStore.add({ name: itemValue })
+        console.log(itemValue);
+        switch (itemValue) {
+            case undefined:
+                break;
+            case "":
+                break;
+            case null:
+                break;
+            default:
+                ToDoStore.add({ name: itemValue });
+                break;
+        }
+        
+        itemValue = "";
     }
 </script>
 

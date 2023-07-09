@@ -1,11 +1,11 @@
 <div id="ToDoList">
     <h3 id="todo_title">To do:</h3>
+    <AddToDoItem />
     {#if hasToDoData}
         {#each list as listitem (listitem.id)}
             <ToDoItem props={listitem} />
         {/each}
     {/if}
-    <AddToDoItem />
 </div>
 
 <script lang="ts">
@@ -27,7 +27,7 @@
     #todo_title {
         margin-top: 0px;
         margin-bottom: 2rem;
-        margin-left: 0px;
+        margin-left: 0.63rem;
         font-size: 18pt;
     }
 
