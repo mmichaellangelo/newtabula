@@ -25,10 +25,10 @@ export function getTodoList(storage: string): ToDoType[] {
 }
 
 export function saveToDoList(storage: string, list: ToDoType[]) {
-    let output: string;
+    let output = "";
     for (let i = 0; i < list.length; i++) {
-        output.concat(list[i].name + ',');
-        output.concat(list[i].checked ? '1' : '0');
+        output = output.concat(list[i].name + ',');
+        output = output.concat(list[i].checked ? '1' : '0');
         if (i != list.length - 1) { output.concat(','); }
     }
 }

@@ -1,14 +1,23 @@
-<div id="wrapper">
-    <input type="text" id="inputbox" bind:value={itemValue} on:keydown={(e) => handleKeyDown}>
-    <button id="submitbutton" on:click={addItem}>Add</button>
-</div>
+
+<form autocomplete="off" id="formwrapper" on:submit|preventDefault={addItem}>
+    <input type="text" id="inputbox" bind:value={itemValue}>
+    <button id="submitbutton" type="submit">Add</button>
+</form>
 
 
 <script lang="ts">
 
+    import { ToDoStore } from "../state/stores";
+    import { getTodoList, saveToDoList } from "../state/localStorage";
+    import type { ToDoType } from "../state/localStorage";
+    
     let itemValue: string;
 
-    import { ToDoStore } from "../state/stores";
+    let store: ToDoType[];
+
+    let unsubscribe = ToDoStore.subscribe((value => {
+        store = value;
+    }))
 
     function addItem() {
         console.log(itemValue);
@@ -25,16 +34,17 @@
         }
         
         itemValue = "";
+
+        saveToDoList("todo", store);
     }
 </script>
 
 <style>
-
-    #wrapper {
+    #formwrapper {
         display: flex;
         align-items: center;
+        max-width: 100%;
     }
-
     #inputbox {
         margin-right: 1rem;
         width: 100%;
